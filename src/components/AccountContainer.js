@@ -23,6 +23,8 @@ class AccountContainer extends Component {
       let results = this.state.transactions
       //console.log(this.state.transactions)
       if(event){
+        console.log(event);
+        
         results = results.filter(trans => ((trans.description).toLowerCase().includes(event) || (trans.category).toLowerCase().includes(event))) //added .toLowerCase() to help with search
       }
       this.setState({filteredTransactions: results})

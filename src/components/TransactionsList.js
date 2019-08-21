@@ -29,8 +29,8 @@ const TransactionsList = (trans) => {
           </th>
         </tr>
 
-        {trans.filteredTransactions.map(eachTrans => {
-        return <Transaction trans={eachTrans}/>})
+        {trans.filteredTransactions.map(t => {
+        return <Transaction trans={t}/>})
       }
 
       </tbody>
