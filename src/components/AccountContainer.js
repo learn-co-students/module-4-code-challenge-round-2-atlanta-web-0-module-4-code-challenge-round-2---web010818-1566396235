@@ -7,6 +7,10 @@ class AccountContainer extends Component {
 
   constructor() {
     super()
+    this.state ={
+      transactions: [], 
+      userInput: ''
+    }
 
     // get a default state working with the data imported from TransactionsData
     // use this to get the functionality working
@@ -14,16 +18,31 @@ class AccountContainer extends Component {
 
   }
 
-  handleChange(event) {
+  componentDidMount(){
+
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+    .then(res => res.json())
+    .then(data => this.setState({
+      transactions: data
+    }))
+  }
+
+  handleChange = (e) => {
     // your code here
+    console.log(e.target.value)
+    this.setState({userInput: e.target.value})
+  }
+
+  filterInput() {
+    return this.state.transactions.filter(transaction => transaction.description.toLowerCase().includes(this.state.userInput))
   }
 
   render() {
 
     return (
       <div>
-        <Search />
-        <TransactionsList />
+        <Search handleChange={this.handleChange}/>
+        <TransactionsList  transactions={this.filterInput()}/>
       </div>
     )
   }
