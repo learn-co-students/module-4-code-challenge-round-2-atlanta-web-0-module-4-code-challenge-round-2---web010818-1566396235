@@ -29,7 +29,9 @@ class AccountContainer extends Component {
   }
 
   filterResults=()=>{
-    return this.state.transactions.filter(tran => tran.description.toLowerCase().includes(this.state.searchTerm))
+    return this.state.transactions.filter(tran => 
+      tran.description.toLowerCase().includes(this.state.searchTerm) ||
+      tran.category.toLowerCase().includes(this.state.searchTerm))
   }
 
   render() {
